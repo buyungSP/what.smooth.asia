@@ -1,0 +1,19 @@
+{
+     "android": {
+         "debug": {
+             "keystore": "test.keystore",
+             "storePassword": "damapicture",
+             "alias": "test",
+             "password" : "damapicture",
+             "keystoreType": "jks"
+         },
+         "release": {
+             "keystore": "test.keystore",
+             "storePassword": "damapicture",
+             "alias": "test",
+             "password" : "damapicture",
+             "keystoreType": "jks",
+             "packageType" : "bundle"
+         }
+     }
+ }

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <meta http-equiv="Content-Security-Policy" content="default-src * vmi:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta name='format-detection' content='telephone=no'>
+    <meta name='msapplication-tap-highlight' content='no'>
+    <script type='text/javascript' src='cordova.js'></script>
+    <script src='js/index.js'></script>
+    <style type="text/css">
+        body,html,*{
+            margin: 0;
+            box-sizing: border-box;
+        }
+        * {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html{
+            width:100%;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            color: #333;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        nav{
+            position: relative;
+            float: left;
+            height: 50px;
+            width: 100%;
+        }
+        .logo,.menu{
+            position: relative;
+            float: left;
+            height: 100%;
+            width: 50px;
+            border-radius: 0;
+            border: none;
+            padding: 10px;
+            background-color: #1ebea5
+        }
+        .logo div,.menu div{
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            background-color: #fff
+        }
+        .title{
+            position: relative;
+            float: left;
+            width: calc(100% - 100px);
+            height: 100%;
+            border-radius: 0;
+            background-color: #1ebea5;
+            border: none;
+            font-weight: bold;
+            font-size: large;
+            color: white
+        }
+        .kolom{
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            padding: 0 10px;
+            color: #232323
+        }
+        .tambah{
+            position: fixed;
+            width: 100%;
+            bottom:0;
+            right: 0;
+            display: block;
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            z-index: 10
+        }
+        .tambah:disabled .wa-submit{
+            background-color: grey
+        }
+        form{
+            width:100%;
+            padding: 0 20px;
+            background-color: #fff
+        }
+        .datainput{
+            position:relative;
+            float: left;
+        }
+        #wa-span{
+            position: absolute;
+            margin:5px 0 20px;
+            left: 0;
+            padding:12px 0;
+            color:#dfdfdf;
+            font-size:small;
+            background:#fff   
+        }
+        #wa-select{
+            position:relative;
+            text-align: center;
+            float: left;
+            padding:12px 0;
+            color:#555;
+            font-size:14px;
+            width:100%;
+            border:0;
+            border-bottom:1px solid #21a51f;
+            outline:none;
+            background:#fff
+        }
+        #wa-select:focus{
+            border-bottom:1px solid #21a51f;
+        }
+        input{
+            position: relative;
+            margin:5px 0 20px;
+            padding:12px 0;
+            color:#555;
+            font-size:14px;
+            border:0;
+            border-bottom:1px solid #21a51f;
+            outline:none;
+            background:#fff
+        }
+        input:focus{
+            border-bottom:2px solid #21a51f;
+            outline:none
+        }
+        #wa_loc{
+            float: left;
+            width: 20%;
+            text-align: right;
+            padding-right: 12px
+        }
+        #wa_phone{
+            float: right;
+            width: 75%;
+            text-align: left;
+        }
+        .wa-submit {
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: .3rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            font-size: 15px;
+            background-color: #21a51f;
+        }
+        .info{
+            position: relative;
+            float: left;
+            padding: 10px;
+            text-align: center;
+            width: 100%
+        }
+        ul{
+            position: relative;
+            float: left;
+            padding: 5px 10px;
+            text-align: center;
+        }
+        li{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            float: left;
+            padding: 0 10px;
+            text-align: left;
+        }
+        .history{
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            margin-bottom: 100px
+        }
+        .list{
+            position: relative;
+            float: left;
+            width: 100%;
+            border-radius: 0;
+            border: none;
+            margin-bottom: 5px;
+            padding: 10px;
+        }
+        .up{
+            position: fixed;
+            bottom: 50px;
+            right: 0;
+            margin: 10px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            display: none;
+            color: white;
+            background-color: #21a51f;
+        }
+    </style>
+</head>
+<body menu='branda'>
+    <nav>
+        <button class="logo" onclick="sistem.home()">
+            <div></div>
+        </button>
+        <button class="title">
+            Chat langsung Whatsapp
+        </button>
+        <button class="menu">
+            <div></div>
+        </button>
+    </nav>
+    <section class="info">form link  direct whatsapp chat. || formulir tautan obrolan whatsapp langsung.</section>
+    <section class="kolom">
+        <form name="whatsapp" onsubmit="sistem.submit(event)">
+            <select id="wa-select">
+                <option hidden>Select country</option>
+                <option>as</option>
+                <option>as</option>
+                <option>as</option>
+            </select>
+            <div class="datainput">
+                <input class="validate" id="wa_loc" name="local" oninput="sistem.input(this)" required="" type="tel" value=''/>
+                <span id='wa-span' >+</span>
+                <input class="validate" id="wa_phone" name="phone" required="" type="tel" value='' placeholder="phone number" />
+                <ul>
+                    <li>press 'Lanjut' button to start</li>
+                    <li>You have to install Whatsapp/Whatsapp business app and your mobile number registered on Whatsapp to proceed to Whatsapp chat page.</li>
+                </ul>
+                <ul>
+                    <li>tekan tombol 'Lanjut' untuk memulai</li>
+                    <li>Anda harus menginstal aplikasi Whatsapp / Whatsapp bisnis dan nomor ponsel Anda terdaftar di Whatsapp untuk melanjutkan ke halaman obrolan Whatsapp.</li>
+                </ul>
+            </div>
+            <button class="tambah" disabled>
+                <div class="wa-submit">Lanjut</div>
+            </button>
+        </form>
+    </section>
+    <section class="info">History Whatsapp number</section>
+    <section class="history"></section>
+    <button class="up" onclick="sistem.up()">up</button>
+    <script type="text/javascript">
+        iklan = {
+            open : () =>{
+                admob.start()
+                const banner = new admob.BannerAd({
+                    adUnitId: 'ca-app-pub-5890023057020023/9560902191',
+                })
+                banner.show()
+            }
+        }
+        lokasi = [
+            ['AFGHANISTAN','93'],
+            ['ALASKA (USA)','1-907'],
+            ['ALBANIA','355'],
+            ['ALGERIA','213'],
+            ['AMERICAN SAMOA','1-684'],
+            ['ANDORRA','376'],
+            ['ANGOLA','244'],
+            ['ANGUILLA','1-264'],
+            ['ANTIGUA & BARBUDA','1-268'],
+            ['ARGENTINA','54'],
+            ['ARMENIA','374'],
+            ['ARUBA','297'],
+            ['ASCENSION','247'],
+            ['AUSTRALIA','61'],
+            ['AUSTRIA','43'],
+            ['AZERBAIJAN','994'],
+            ['BAHAMAS','1-242'],
+            ['BAHRAIN','973'],
+            ['BANGLADESH','880'],
+            ['BARBADOS','1-246'],
+            ['BELARUS','375'],
+            ['BELGIUM','32'],
+            ['BELIZE','501'],
+            ['BENIN','229'],
+            ['BERMUDA','1-441'],
+            ['BHUTAN','975'],
+            ['BOLIVIA','591'],
+            ['BOSNIA / HERZEGOVINA','387'],
+            ['BOTSWANA','267'],
+            ['BRAZIL','55'],
+            ['BRITISH VIRGINISLANDS','1-284'],
+            ['BRUNEI','673'],
+            ['BULGARIA','359'],
+            ['BURKINA FASO','226'],
+            ['BURUNDI','257'],
+            ['CAMBODIA','855'],
+            ['CAMEROON','237'],
+            ['CANADA','1'],
+            ['CAPE VERDE','238'],
+            ['CAYMAN ISLANDS','1-345'],
+            ['CENTRAL AFRICANREPUBLIC','236'],
+            ['CHAD','235'],
+            ['CHILE','56'],
+            ['CHINA','86'],
+            ['COLOMBIA','57'],
+            ['COMOROS','269'],
+            ['CONGO','242'],
+            ['CONGO DEM. REP.(ZAIRE)','243'],
+            ['COOK ISLAND','682'],
+            ['COSTA RICA','506'],
+            ['CROATIA','385'],
+            ['CUBA','53'],
+            ['CYPRUS','357'],
+            ['CZECH REPUBLIC','420'],
+            ['DENMARK','45'],
+            ['DIEGO GARCIA','246'],
+            ['DJIBOUTI','253'],
+            ['DOMINICA','1-767'],
+            ['DOMINICAN REPUBLIC','1-809'],
+            ['EAST TIMOR','670'],
+            ['ECUADOR','593'],
+            ['EGYPT','20'],
+            ['EL SALVADOR','503'],
+            ['EQUATORIAL GUINEA','240'],
+            ['ERITREA','291'],
+            ['ESTONIA','372'],
+            ['ETHIOPIA','251'],
+            ['FALKLAND ISLANDS','500'],
+            ['FAROE ISLANDS','298'],
+            ['FIJI','679'],
+            ['FINLAND','358'],
+            ['FRANCE','33'],
+            ['FRENCH GUIANA','594'],
+            ['FRENCH POLYNESIA','689'],
+            ['GABON','241'],
+            ['GAMBIA','220'],
+            ['GEORGIA','995'],
+            ['GERMANY','49'],
+            ['GHANA','233'],
+            ['GIBRALTAR','350'],
+            ['GREECE','30'],
+            ['GREENLAND','299'],
+            ['GRENADA','1-473'],
+            ['GUADALOUPE','590'],
+            ['GUAM','1-671'],
+            ['GUATEMALA','502'],
+            ['GUINEA','224'],
+            ['GUINEA BISSAU','245'],
+            ['GUYANA','592'],
+            ['HAITI','509'],
+            ['HAWAII (USA)','1-808'],
+            ['HONDURAS','504'],
+            ['HONG KONG','852'],
+            ['HUNGARY','36'],
+            ['ICELAND','354'],
+            ['INDIA','91'],
+            ['INDONESIA','62'],
+            ['IRAN','98'],
+            ['IRAQ','964'],
+            ['IRELAND','353'],
+            ['ISRAEL','972'],
+            ['ITALY','39'],
+            ['IVORY COAST','225'],
+            ['JAMAICA','1-876'],
+            ['JAPAN','81'],
+            ['JORDAN','962'],
+            ['KAZAKHSTAN','7'],
+            ['KENYA','254'],
+            ['KIRIBATI','686'],
+            ['KOREA (NORTH)','850'],
+            ['KOREA SOUTH','82'],
+            ['KUWAIT','965'],
+            ['KYRGHYZSTAN','996'],
+            ['LAOS','856'],
+            ['LATVIA','371'],
+            ['LEBANON','961'],
+            ['LESOTHO','266'],
+            ['LIBERIA','231'],
+            ['LIBYA','218'],
+            ['LIECHTENSTEIN','423'],
+            ['LITHUANIA','370'],
+            ['LUXEMBOURG','352'],
+            ['MACAU','853'],
+            ['MACEDONIA','389'],
+            ['MADAGASCAR','261'],
+            ['MALAWI','265'],
+            ['MALAYSIA','60'],
+            ['MALDIVES','960'],
+            ['MALI','223'],
+            ['MALTA','356'],
+            ['MARIANA IS.(SAIPAN)','1-670'],
+            ['MARSHALL ISLANDS','692'],
+            ['MARTINIQUE(FRENCHANTILLES)','596'],
+            ['MAURITANIA','222'],
+            ['MAURITIUS','230'],
+            ['MAYOTTE','269'],
+            ['MEXICO','52'],
+            ['MICRONESIA','691'],
+            ['MOLDOVA','373'],
+            ['MONACO','377'],
+            ['MONGOLIA','976'],
+            ['MONTSERRAT','1-664 '],
+            ['MOROCCO','212'],
+            ['MOZAMBIQUE','258'],
+            ['MYANMAR','95'],
+            ['NAMIBIA','264'],
+            ['NAURU','674'],
+            ['NEPAL','977'],
+            ['NETHERLANDS','31'],
+            ['NETHERLANDS ANTILLES','599'],
+            ['NEW CALEDONIA','687'],
+            ['NEW ZEALAND','64'],
+            ['NICARAGUA','505'],
+            ['NIGER','227'],
+            ['NIGERIA','234'],
+            ['NIUE ISLAND','683'],
+            ['NORWAY','47'],
+            ['OMAN','968'],
+            ['PAKISTAN','92'],
+            ['PALAU','680'],
+            ['PALESTINE','970'],
+            ['PANAMA','507'],
+            ['PAPUA NEW GUINEA','675'],
+            ['PARAGUAY','595'],
+            ['PERU','51'],
+            ['PHILIPPINES','63'],
+            ['POLAND','48'],
+            ['PORTUGAL','351'],
+            ['PUERTO RICO (I) (USA)','1-787'],
+            ['PUERTO RICO (II)(USA)','1-939'],
+            ['QATAR','974'],
+            ['REUNION','262'],
+            ['ROMANIA','40'],
+            ['RUSSIA','7'],
+            ['RWANDA','250'],
+            ['SAMOA WESTERN','685'],
+            ['SAN MARINO','378'],
+            ['SAO TOME &PRINCIPE','239'],
+            ['SAUDI ARABIA','966'],
+            ['SENEGAL','221'],
+            ['SEYCHELLES','248'],
+            ['SIERRA LEONE','232'],
+            ['SINGAPORE','65'],
+            ['SLOVAKIA','421'],
+            ['SLOVENIA','386'],
+            ['SOLOMON ISLANDS','677'],
+            ['SOMALIA','252'],
+            ['SOUTH AFRICA','27'],
+            ['SPAIN','34'],
+            ['SRI LANKA','94'],
+            ['ST HELENA','290'],
+            ['ST KITTS & NEVIS','1-869 '],
+            ['ST LUCIA','1-758 '],
+            ['ST VINCENT &GRENADINES','1-784 '],
+            ['ST. PIERRE &MIQUELON','508'],
+            ['SUDAN','249'],
+            ['SURINAM','597'],
+            ['SWAZILAND','268'],
+            ['SWEDEN','46'],
+            ['SWITZERLAND','41'],
+            ['SYRIA','963'],
+            ['TAIWAN','886'],
+            ['TAJIKISTAN','992'],
+            ['TANZANIA','255'],
+            ['THAILAND','66'],
+            ['TOGO','228'],
+            ['TOKELAU','690'],
+            ['TONGA','676'],
+            ['TRINIDAD & TOBAGO','1-868'],
+            ['TUNISIA','216'],
+            ['TURKEY','90'],
+            ['TURKMENISTAN','993'],
+            ['TURKS & CAICOSISLANDS','1-649 '],
+            ['TUVALU','688'],
+            ['UGANDA','256'],
+            ['UKRAINE','380'],
+            ['UNITED ARAB EMIRATES','971'],
+            ['UNITED KINGDOM','44'],
+            ['URUGUAY','598'],
+            ['UZBEKISTAN','998'],
+            ['VANUATU','678'],
+            ['VATICAN CITY','39'],
+            ['VENEZUELA','58'],
+            ['VIETNAM','84'],
+            ['VIRGIN ISLAND (USA)','1-340'],
+            ['WALLIS & FUTUNA','681'],
+            ['YEMEN','967'],
+            ['YUGOSLAVIA (SERBIA)','381'],
+            ['ZAMBIA','260'],
+            ['ZANZIBAR','255'],
+            ['ZIMBABWE','263']
+        ]
+        sistem = {
+            open : () => {
+                iklan.open()
+                sistem.home()
+            },
+            home : () =>{
+                sistem.up()
+                a = document
+                b = a.querySelector('select')
+                b.innerHTML = ''
+                c = a.createElement('option')
+                c.setAttribute('hidden',true)
+                c.innerHTML = 'Select country'
+                b.appendChild(c)
+                for(d of lokasi){
+                    e = a.createElement('option')
+                    e.setAttribute('value',d[1])
+                    e.setAttribute('onclick',`sistem.set('${d[1]}')`)
+                    e.innerHTML = d[0]
+                    b.appendChild(e)
+                }
+                f = !JSON.parse(localStorage.getItem('history'))? new Array() : JSON.parse(localStorage.getItem('history'))
+                g = a.querySelector('.history')
+                g.innerHTML = ''
+                for(h of f){
+                    i = a.createElement('button')
+                    i.className = 'list'
+                    i.setAttribute('onclik',`sistem.chat('https://wa.me/${h.phone}')`)
+                    j = a.createElement('div')
+                    j.innerHTML = h.phone
+                    k = a.createElement('div')
+                    k.innerHTML = sistem.times(h.times)
+                    g.appendChild(i)
+                    i.appendChild(j)
+                    i.appendChild(k)
+                }
+                l = !localStorage.getItem('default')? '62' : localStorage.getItem('default')
+                sistem.default(l)
+                window.onscroll = () =>{
+                    page = document.querySelector('nav')
+                    pages = page.getBoundingClientRect()
+                    document.querySelector('.up').style.display = (pages.top >= -50 )? 'none' : 'block'
+                }
+            },
+            up : () =>{
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+            default : a =>{
+                b = lokasi.find(element => element[1] == a)
+                if(!b){
+                    document.querySelector('select').selectedIndex  = 0
+                    document.querySelector('.tambah').disabled = true
+                }else{
+                    c = lokasi.indexOf(b)
+                    document.querySelector('#wa_loc').value = b[1]
+                    document.querySelector('select').selectedIndex  = c + 1   
+                    document.querySelector('.tambah').disabled = false
+                    localStorage.setItem('default',b[1])
+                }
+            },
+            times : a =>{
+                const b = new Date(parseFloat(a))
+                return b.getHours() + ':' + b.getMinutes() + ' ' + b.getDate() + '/' + b.getMonth() + '/' + b.getFullYear()
+            },
+            set : a =>{
+                document.querySelector('#wa_loc').value = a
+                localStorage.setItem('default',a)
+            },
+            submit : function(a) {
+                a.preventDefault()
+                b = new FormData(a.target)
+                c = {}
+                for (d of b.entries()) {
+                    c[d[0]] = d[1]
+                }
+                e = `https://wa.me/${c.local}${c.phone}`
+                f = {
+                    times : Date.now(),
+                    phone : `${c.local}${c.phone}`
+                }
+                g = !JSON.parse(localStorage.getItem('history'))? new Array() : JSON.parse(localStorage.getItem('history'))
+                g.push(f)
+                localStorage.setItem('history',JSON.stringify(g))
+                sistem.chat(e)
+            },
+            chat : a =>{
+                window.location.href = a
+                sistem.home()
+            },
+            input : a =>{
+                sistem.default(a.value)
+            }
+        }
+        //document.addEventListener('DOMContentLoaded',sistem.open, false);
+        document.addEventListener('deviceready', sistem.open, false)
+        document.addEventListener("resume", sistem.home, false)
+    </script>
+</body>
+</html>

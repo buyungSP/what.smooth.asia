@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="what.smooth.asia" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Chat wa langsung</name>
+    <description>Direct chat whatsapp
+    </description>
+    <author email="rascallino69@gmail.com" href="https://smooth.asia">
+        Smooth Home Production
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="AndroidXEnabled" value="true" />
+        <icon density="ldpi" src="resources/android/icon/36.png" />
+        <icon density="mdpi" src="resources/android/icon/48.png" />
+        <icon density="hdpi" src="resources/android/icon/72.png" />
+        <icon density="xhdpi" src="resources/android/icon/96.png" />
+        <icon density="xxhdpi" src="resources/android/icon/144.png" />
+        <icon density="xxxhdpi" src="resources/android/icon/192.png" />
+        <splash density="land-ldpi" src="resources/android/splash/l6.png" />
+        <splash density="land-mdpi" src="resources/android/splash/l5.png" />
+        <splash density="land-hdpi" src="resources/android/splash/l4.png" />
+        <splash density="land-xhdpi" src="resources/android/splash/l3.png" />
+        <splash density="land-xxhdpi" src="resources/android/splash/l2.png" />
+        <splash density="land-xxxhdpi" src="resources/android/splash/l1.png" />
+        <splash density="port-ldpi" src="resources/android/splash/p1.png" />
+        <splash density="port-mdpi" src="resources/android/splash/p2.png" />
+        <splash density="port-hdpi" src="resources/android/splash/p3.png" />
+        <splash density="port-xhdpi" src="resources/android/splash/p4.png" />
+        <splash density="port-xxhdpi" src="resources/android/splash/p5.png" />
+        <splash density="port-xxxhdpi" src="resources/android/splash/p6.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
