@@ -70,7 +70,7 @@
         .title{
             position: relative;
             float: left;
-            width: calc(100% - 100px);
+            width: calc(100% - 50px);
             height: 100%;
             border-radius: 0;
             background-color: #1ebea5;
@@ -279,13 +279,10 @@
 </head>
 <body menu='branda'>
     <nav>
-        <button class="logo" onclick="sistem.back()">
-            <span class="material-icons">chevron_left</span>
-        </button>
         <button class="title">
             Chat langsung Whatsapp
         </button>
-        <button class="menu">
+        <button class="menu" onclick="sistem.about()">
             <span class="material-icons">info</span>
         </button>
     </nav>
@@ -342,11 +339,11 @@
         <section class="history"></section>
     </div>
     <footer>
-        <button id="homeButton">
+        <button onclick="sistem.homeButton()">
             <span class="material-icons">home</span>
             <span>Home</span>
         </button>
-        <button id="historiButton">
+        <button onclick="sistem.historiButton()">
             <span class="material-icons">list</span>
             <span>History</span>
         </button>
@@ -686,18 +683,6 @@
             },
             home : () =>{
                 sistem.layout()
-                homeButton.onclick = function(){
-                    homeTop = home.getBoundingClientRect().top
-                    if(homeTop){
-                        window.scrollTo({top:homeTop,behavior:'smooth'})
-                    }
-                }
-                historiButton.onclick = function(){
-                    historiTop = histori.getBoundingClientRect().top
-                    if(historiTop){
-                        window.scrollTo({top:historiTop,behavior:'smooth'})
-                    }
-                }
                 a = document
                 b = a.querySelector('select')
                 b.innerHTML = ''
@@ -777,6 +762,21 @@
             },
             playStore(){
                 window.location.href = 'https://play.google.com/store/apps/details?id=what.smooth.asia'
+            },
+            homeButton(){
+                homeTop = home.getBoundingClientRect().top
+                if(homeTop){
+                    window.scrollTo({top:homeTop,behavior:'smooth'})
+                }
+            },
+            historiButton(){
+                historiTop = histori.getBoundingClientRect().top
+                if(historiTop){
+                    window.scrollTo({top:historiTop,behavior:'smooth'})
+                }
+            },
+            about(){
+
             }
         }
         sistem.open()
