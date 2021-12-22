@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="what.smooth.asia" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="what.smooth.asia" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Chat wa langsung</name>
     <description>Direct chat whatsapp
     </description>
@@ -32,7 +32,9 @@
         <preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
         <preference name="AppendUserAgent" value="My Browser" />
         <preference name="android-targetSdkVersion" value="30" />
+        <preference name="android-minSdkVersion" value="19" />
         <preference name="AndroidXEnabled" value="true" />
+        <framework src="com.android.support:support-annotations:28.0.0" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

@@ -3,10 +3,6 @@
 <head>
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-  <meta http-equiv="Content-Security-Policy" content="default-src * vmi:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
     <meta name='format-detection' content='telephone=no'>
     <meta name='msapplication-tap-highlight' content='no'>
     <script type='text/javascript' src='cordova.js'></script>
@@ -257,7 +253,6 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            height: 50px;
             width: 100%;
             z-index: 10;
         }
@@ -266,7 +261,7 @@
             border-radius: 0;
             position: relative;
             float: left;
-            width: calc(100%/3);
+            width: calc(100%/4);
             height: 100%;
             padding: 5px;
             background-color: #1ebea5;
@@ -297,7 +292,7 @@
     <div id="home">
         <section class="kolom">
             <form name="whatsapp" onsubmit="sistem.submit(event)">
-                <select id="wa-select">
+                <select id="wa-select" onchange="sistem.set(this)">
                     <option hidden>Select country</option>
                     <option>as</option>
                     <option>as</option>
@@ -355,12 +350,43 @@
             <span class="material-icons">list</span>
             <span>History</span>
         </button>
-        <button id="marketButton">
+        <button onclick="sistem.playStore()">
             <span class="material-icons">shop</span>
             <span>Update</span>
         </button>
+        <button>
+            <span class="material-icons">share</span>
+            <span>Share</span>
+        </button>
     </footer>
     <script type="text/javascript">
+        oldAdmob = {
+            banner : () =>{
+                admobid = {
+                    banner: 'ca-app-pub-5890023057020023/9560902191',
+                    interstitial: 'ca-app-pub-5890023057020023/3413419879',
+                }
+                admob.banner.config({
+                    id: admobid.banner,
+                    isTesting: false,
+                    autoShow: true,
+                })
+                admob.banner.prepare()
+                admob.interstitial.config({
+                    id: admobid.interstitial,
+                    isTesting: false,
+                    autoShow: false,
+                })
+                admob.interstitial.prepare()
+            },
+            int : phone =>{
+                admob.interstitial.show()
+                document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
+                    sistem.chat(`https://wa.me/${phone}`)
+                    admob.interstitial.prepare()
+                })
+            }
+        }
         iklan = {
             open : () =>{
                 admob.start()
@@ -630,7 +656,8 @@
         ]
         sistem = {
             open : () => {
-                iklan.open()
+               // oldAdmob.banner()
+                //iklan.open()
                 sistem.home()
             },
             back : () =>{
@@ -671,7 +698,6 @@
                         window.scrollTo({top:historiTop,behavior:'smooth'})
                     }
                 }
-                marketButton.onclick = () => window.location.href = 'https://play.google.com/store/apps/details?id=what.smooth.asia'
                 a = document
                 b = a.querySelector('select')
                 b.innerHTML = ''
@@ -682,7 +708,6 @@
                 for(d of lokasi){
                     e = a.createElement('option')
                     e.setAttribute('value',d[1])
-                    e.setAttribute('onclick',`sistem.set('${d[1]}')`)
                     e.innerHTML = d[0]
                     b.appendChild(e)
                 }
@@ -692,7 +717,7 @@
                 for(h of f){
                     i = a.createElement('button')
                     i.className = 'list'
-                    i.setAttribute('onclick',`iklan.video('${h.phone}')`)
+                    i.setAttribute('onclick',`oldAdmob.int('${h.phone}')`)
                     j = a.createElement('div')
                     j.innerHTML = h.phone
                     k = a.createElement('div')
@@ -730,7 +755,7 @@
                 })
             },
             set : a =>{
-                wa_loc.value = a
+                wa_loc.value = a.value
                 localStorage.setItem('default',a)
             },
             submit : function(a) {
@@ -749,8 +774,12 @@
             },
             input : a =>{
                 sistem.default(a.value)
+            },
+            playStore(){
+                window.location.href = 'https://play.google.com/store/apps/details?id=what.smooth.asia'
             }
         }
+        sistem.open()
         document.addEventListener('deviceready', sistem.open, false)
         document.addEventListener("resume", sistem.home, false)
         document.addEventListener("backbutton", sistem.back, false)
