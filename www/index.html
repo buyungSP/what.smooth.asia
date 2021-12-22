@@ -44,7 +44,7 @@
         }
         nav{
             position: fixed;
-            top: 0;
+            top: 50px;
             left: 0;
             height: 50px;
             width: 100%;
@@ -261,7 +261,7 @@
             border-radius: 0;
             position: relative;
             float: left;
-            width: calc(100%/4);
+            width: calc(100%/3);
             height: 100%;
             padding: 5px;
             background-color: #1ebea5;
@@ -278,7 +278,6 @@
         #home,#histori{
             padding-top: 100px;
             width: 100%;
-            background-color: #fff;
             overflow: scroll;
         }
     </style>
@@ -357,22 +356,24 @@
             <span class="material-icons">shop</span>
             <span>Update</span>
         </button>
-        <button onclick="sistem.shared()">
-            <span class="material-icons">share</span>
-            <span>Share</span>
-        </button>
     </footer>
     <script type="text/javascript">
         oldAdmob = {
-            banner : () =>{
+            banner(){
                 admobid = {
                     banner: 'ca-app-pub-5890023057020023/9560902191',
                     interstitial: 'ca-app-pub-5890023057020023/3413419879',
+                }
+                admobis = {
+                    banner:'ca-app-pub-3940256099942544/6300978111',
+                    interstitial:'ca-app-pub-3940256099942544/1033173712'
                 }
                 admob.banner.config({
                     id: admobid.banner,
                     isTesting: false,
                     autoShow: true,
+                    bannerAtTop:true,
+                    overlap:true,
                 })
                 admob.banner.prepare()
                 admob.interstitial.config({
@@ -382,10 +383,17 @@
                 })
                 admob.interstitial.prepare()
             },
-            int : phone =>{
+            int(phone){
                 admob.interstitial.show()
                 document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
                     sistem.chat(`https://wa.me/${phone}`)
+                    admob.interstitial.prepare()
+                })
+            },
+            closed(){
+                admob.interstitial.show()
+                document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
+                    navigator.app.exitApp()
                     admob.interstitial.prepare()
                 })
             }
@@ -625,13 +633,12 @@
         ]
         sistem = {
             open : () => {
-               // oldAdmob.banner()
-                //iklan.open()
+                oldAdmob.banner()
                 sistem.home()
             },
             back : () =>{
                 if(!home.getBoundingClientRect().top){
-                    navigator.app.exitApp()
+                    oldAdmob.closed()
                 }else{
                     window.scrollTo({top:0,behavior:'smooth'})
                 }
@@ -645,7 +652,7 @@
             },
             layout : () =>{
                 home.style.height = `${window.innerHeight}px`
-                histori.style.width = `${window.innerWidth}px`
+                histori.style.height = `${window.innerHeight}px`
             },
             home : () =>{
                 sistem.layout()
@@ -742,10 +749,9 @@
                 }
             },
             about(){
-
+                window.location.href = 'https://buyungsp.github.io/what.smooth.asia/'
             }
         }
-        sistem.open()
         document.addEventListener('deviceready', sistem.open, false)
         document.addEventListener("resume", sistem.home, false)
         document.addEventListener("backbutton", sistem.back, false)
