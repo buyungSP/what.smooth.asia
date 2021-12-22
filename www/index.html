@@ -275,6 +275,12 @@
         .hide{
             display: none;
         }
+        #home,#histori{
+            padding-top: 100px;
+            width: 100%;
+            background-color: #fff;
+            overflow: scroll;
+        }
     </style>
 </head>
 <body menu='branda'>
@@ -381,40 +387,6 @@
                 document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
                     sistem.chat(`https://wa.me/${phone}`)
                     admob.interstitial.prepare()
-                })
-            }
-        }
-        iklan = {
-            open : () =>{
-                admob.start()
-                const banner = new admob.BannerAd({
-                    adUnitId: 'ca-app-pub-5890023057020023/9560902191',
-                    //adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-                })
-                banner.show()
-                iklan.adsOpen()
-            },
-            adsOpen : async () => {
-                const ad = new admob.AppOpenAd({
-                    adUnitId: 'ca-app-pub-5890023057020023/8754170029'
-                    //adUnitId: 'ca-app-pub-3940256099942544/3419835294'
-                })
-                document.addEventListener('resume',async () => {
-                    if (!await ad.show()) {
-                        await ad.load()
-                    }
-                },false)
-            },
-            video : async phone =>{
-                interstitial = new admob.InterstitialAd({
-                    adUnitId: 'ca-app-pub-5890023057020023/3413419879',  
-                    //adUnitId: 'ca-app-pub-3940256099942544/1033173712',  
-                })
-                await interstitial.load()
-                await interstitial.show()
-                document.addEventListener('admob.ad.dismiss', async () => {
-                    sistem.chat(`https://wa.me/${phone}`)
-                    await interstitial.load()
                 })
             }
         }
@@ -672,14 +644,8 @@
                 }
             },
             layout : () =>{
-                home.style.width = `${window.innerWidth}px`
                 home.style.height = `${window.innerHeight}px`
-                home.style.paddingTop = '50px'
                 histori.style.width = `${window.innerWidth}px`
-                histori.style.height = `${window.innerHeight}px`
-                histori.style.paddingTop = '50px'
-                histori.style.backgroundColor = '#fff'
-                histori.style.overflow = 'scroll'
             },
             home : () =>{
                 sistem.layout()
