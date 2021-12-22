@@ -30,10 +30,11 @@
             width:100%;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: #ddd;
             font-family: sans-serif;
             -ms-text-size-adjust: 100%;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            overflow: hidden;
         }
         body {
             margin: 0;
@@ -42,12 +43,16 @@
             color: #333;
             font-weight: 400;
             font-size: 14px;
+            overflow: hidden;
+            background-color: #ddd
         }
         nav{
-            position: relative;
-            float: left;
+            position: fixed;
+            top: 0;
+            left: 0;
             height: 50px;
             width: 100%;
+            z-index: 10;
         }
         .logo,.menu{
             position: relative;
@@ -57,7 +62,8 @@
             border-radius: 0;
             border: none;
             padding: 10px;
-            background-color: #1ebea5
+            background-color: #1ebea5;
+            color: #fff;
         }
         .logo div,.menu div{
             height: 100%;
@@ -81,28 +87,39 @@
             position: relative;
             float: left;
             width: 100%;
-            height: 100%;
-            padding: 0 10px;
-            color: #232323
+            height: auto;
+            padding: 10px;
+            color: #232323;
+            background-color: #ddd
         }
         .tambah{
-            position: fixed;
+            position: relative;
+            float: left;
             width: 100%;
-            bottom:0;
-            right: 0;
+            height: 50px;
             display: block;
             background-color: transparent;
-            border: none;
-            padding: 10px;
-            z-index: 10
+            padding: 5px;
+            color: #fff;
         }
         .tambah:disabled .wa-submit{
             background-color: grey
         }
+        .wa-submit {
+            border: none;
+            width: 100%;
+            height: 100%;
+            background-color: #21a51f;
+            font-size: large;
+            font-weight: bold;
+            color: #fff
+        }
         form{
             width:100%;
-            padding: 0 20px;
-            background-color: #fff
+            height: auto;
+            padding:20px;
+            background-color: #fff;
+            display: inline-block;
         }
         .datainput{
             position:relative;
@@ -126,7 +143,7 @@
             font-size:14px;
             width:100%;
             border:0;
-            border-bottom:1px solid #21a51f;
+            border-bottom:1px solid #85f983;
             outline:none;
             background:#fff
         }
@@ -135,17 +152,17 @@
         }
         input{
             position: relative;
-            margin:5px 0 20px;
+            margin:5px 0;
             padding:12px 0;
             color:#555;
             font-size:14px;
             border:0;
-            border-bottom:1px solid #21a51f;
+            border-bottom:1px solid #85f983;
             outline:none;
             background:#fff
         }
         input:focus{
-            border-bottom:2px solid #21a51f;
+            border-bottom:1px solid #21a51f;
             outline:none
         }
         #wa_loc{
@@ -159,37 +176,44 @@
             width: 75%;
             text-align: left;
         }
-        .wa-submit {
-            color: #fff;
-            text-decoration: none;
-            display: inline-block;
-            padding: 10px 25px;
-            border-radius: .3rem;
-            font-weight: 700;
-            letter-spacing: .5px;
-            font-size: 15px;
-            background-color: #21a51f;
+        .detail{
+            position: relative;
+            float: left;
+            padding: 10px;
+            background-color: #ddd
         }
         .info{
             position: relative;
             float: left;
             padding: 10px;
-            text-align: center;
-            width: 100%
+            width: 100%;
+            background-color: #fff;
         }
-        ul{
+        .info strong,.info ul{
             position: relative;
             float: left;
-            padding: 5px 10px;
-            text-align: center;
+            width: 100%;
+            height: auto;
+            padding: 5px;
+        }
+        .info button{
+            position: relative;
+            float: right;
+            border:none;
+            background-color: transparent;
+            color:#21a51f;
+            height: 30px
+        }
+        .info button span{
+        }
+        .info h3{
+            position: relative;
+            float: left;
+            line-height: 30px;
+            height: 30px
         }
         li{
-            width: 100%;
-            height: 100%;
-            position: relative;
-            float: left;
-            padding: 0 10px;
-            text-align: left;
+            list-style-position: inside;
         }
         .history{
             position: relative;
@@ -208,71 +232,167 @@
             margin-bottom: 5px;
             padding: 10px;
         }
-        .up{
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url(font.woff2) format('woff2');
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -moz-font-feature-settings: 'liga';
+            -moz-osx-font-smoothing: grayscale;
+        }
+        footer{
             position: fixed;
-            bottom: 50px;
-            right: 0;
-            margin: 10px;
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 50%;
+            bottom: 0;
+            left: 0;
+            height: 50px;
+            width: 100%;
+            z-index: 10;
+        }
+        footer button{
+            border:none;
+            border-radius: 0;
+            position: relative;
+            float: left;
+            width: calc(100%/3);
+            height: 100%;
+            padding: 5px;
+            background-color: #1ebea5;
+            color: #fff
+        }
+        footer button span{
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+        .hide{
             display: none;
-            color: white;
-            background-color: #21a51f;
         }
     </style>
 </head>
 <body menu='branda'>
     <nav>
-        <button class="logo" onclick="sistem.home()">
-            <div></div>
+        <button class="logo" onclick="sistem.back()">
+            <span class="material-icons">chevron_left</span>
         </button>
         <button class="title">
             Chat langsung Whatsapp
         </button>
         <button class="menu">
-            <div></div>
+            <span class="material-icons">info</span>
         </button>
     </nav>
-    <section class="info">form link  direct whatsapp chat. || formulir tautan obrolan whatsapp langsung.</section>
-    <section class="kolom">
-        <form name="whatsapp" onsubmit="sistem.submit(event)">
-            <select id="wa-select">
-                <option hidden>Select country</option>
-                <option>as</option>
-                <option>as</option>
-                <option>as</option>
-            </select>
-            <div class="datainput">
-                <input class="validate" id="wa_loc" name="local" oninput="sistem.input(this)" required="" type="tel" value=''/>
-                <span id='wa-span' >+</span>
-                <input class="validate" id="wa_phone" name="phone" required="" type="tel" value='' placeholder="phone number" />
+    <div id="home">
+        <section class="kolom">
+            <form name="whatsapp" onsubmit="sistem.submit(event)">
+                <select id="wa-select">
+                    <option hidden>Select country</option>
+                    <option>as</option>
+                    <option>as</option>
+                    <option>as</option>
+                </select>
+                <div class="datainput">
+                    <input class="validate" id="wa_loc" name="local" oninput="sistem.input(this)" required="" type="tel" value=''/>
+                    <span id='wa-span' >+</span>
+                    <input class="validate" id="wa_phone" name="phone" required="" type="tel" value='' placeholder="phone number" />
+                </div>
+                <div class="tambah" disabled>
+                    <button class="wa-submit">
+                        Kirim
+                    </button>
+                </div>
+            </form>
+        </section>
+        <section class="detail">
+            <div class="info">
+                <h3>Info</h3>
+                <button onclick="sistem.translate(this)" value="0">
+                    <span class="material-icons">radio_button_unchecked</span>
+                </button>
+            </div>
+            <div class="info hide" id="trans">
+                <strong>
+                    Form link  direct whatsapp chat.   
+                </strong>
                 <ul>
-                    <li>press 'Lanjut' button to start</li>
+                    <li>Press 'Lanjut' button to start.</li>
                     <li>You have to install Whatsapp/Whatsapp business app and your mobile number registered on Whatsapp to proceed to Whatsapp chat page.</li>
                 </ul>
+            </div>
+            <div class="info" id="trans">
+                <strong>
+                    Formulir tautan obrolan whatsapp langsung.  
+                </strong>
                 <ul>
-                    <li>tekan tombol 'Lanjut' untuk memulai</li>
+                    <li>tekan tombol 'Kirim' untuk memulai.</li>
                     <li>Anda harus menginstal aplikasi Whatsapp / Whatsapp bisnis dan nomor ponsel Anda terdaftar di Whatsapp untuk melanjutkan ke halaman obrolan Whatsapp.</li>
                 </ul>
             </div>
-            <button class="tambah" disabled>
-                <div class="wa-submit">Lanjut</div>
-            </button>
-        </form>
-    </section>
-    <section class="info">History Whatsapp number</section>
-    <section class="history"></section>
-    <button class="up" onclick="sistem.up()">up</button>
+        </section>
+    </div>
+    <div id="histori">
+        <section class="info">History Whatsapp number</section>
+        <section class="history"></section>
+    </div>
+    <footer>
+        <button id="homeButton">
+            <span class="material-icons">home</span>
+            <span>Home</span>
+        </button>
+        <button id="historiButton">
+            <span class="material-icons">list</span>
+            <span>History</span>
+        </button>
+        <button id="marketButton">
+            <span class="material-icons">shop</span>
+            <span>Update</span>
+        </button>
+    </footer>
     <script type="text/javascript">
         iklan = {
             open : () =>{
                 admob.start()
                 const banner = new admob.BannerAd({
                     adUnitId: 'ca-app-pub-5890023057020023/9560902191',
+                    //adUnitId: 'ca-app-pub-3940256099942544/6300978111',
                 })
                 banner.show()
+                iklan.adsOpen()
+            },
+            adsOpen : async () => {
+                const ad = new admob.AppOpenAd({
+                    adUnitId: 'ca-app-pub-5890023057020023/8754170029'
+                    //adUnitId: 'ca-app-pub-3940256099942544/3419835294'
+                })
+                document.addEventListener('resume',async () => {
+                    if (!await ad.show()) {
+                        await ad.load()
+                    }
+                },false)
+            },
+            video : async phone =>{
+                interstitial = new admob.InterstitialAd({
+                    adUnitId: 'ca-app-pub-5890023057020023/3413419879',  
+                    //adUnitId: 'ca-app-pub-3940256099942544/1033173712',  
+                })
+                await interstitial.load()
+                await interstitial.show()
+                document.addEventListener('admob.ad.dismiss', async () => {
+                    sistem.chat(`https://wa.me/${phone}`)
+                    await interstitial.load()
+                })
             }
         }
         lokasi = [
@@ -513,8 +633,45 @@
                 iklan.open()
                 sistem.home()
             },
+            back : () =>{
+                if(!home.getBoundingClientRect().top){
+                    navigator.app.exitApp()
+                }else{
+                    window.scrollTo({top:0,behavior:'smooth'})
+                }
+            },
+            translate : a =>{
+                a.value = !parseInt(a.value)? 1 : 0
+                a.children[0].innerHTML = !parseInt(a.value)? 'radio_button_unchecked' : 'radio_button_checked'
+                for(b of document.querySelectorAll('#trans')){
+                    b.classList.toggle('hide')
+                }
+            },
+            layout : () =>{
+                home.style.width = `${window.innerWidth}px`
+                home.style.height = `${window.innerHeight}px`
+                home.style.paddingTop = '50px'
+                histori.style.width = `${window.innerWidth}px`
+                histori.style.height = `${window.innerHeight}px`
+                histori.style.paddingTop = '50px'
+                histori.style.backgroundColor = '#fff'
+                histori.style.overflow = 'scroll'
+            },
             home : () =>{
-                sistem.up()
+                sistem.layout()
+                homeButton.onclick = function(){
+                    homeTop = home.getBoundingClientRect().top
+                    if(homeTop){
+                        window.scrollTo({top:homeTop,behavior:'smooth'})
+                    }
+                }
+                historiButton.onclick = function(){
+                    historiTop = histori.getBoundingClientRect().top
+                    if(historiTop){
+                        window.scrollTo({top:historiTop,behavior:'smooth'})
+                    }
+                }
+                marketButton.onclick = () => window.location.href = 'https://play.google.com/store/apps/details?id=what.smooth.asia'
                 a = document
                 b = a.querySelector('select')
                 b.innerHTML = ''
@@ -535,7 +692,7 @@
                 for(h of f){
                     i = a.createElement('button')
                     i.className = 'list'
-                    i.setAttribute('onclik',`sistem.chat('https://wa.me/${h.phone}')`)
+                    i.setAttribute('onclick',`iklan.video('${h.phone}')`)
                     j = a.createElement('div')
                     j.innerHTML = h.phone
                     k = a.createElement('div')
@@ -546,14 +703,7 @@
                 }
                 l = !localStorage.getItem('default')? '62' : localStorage.getItem('default')
                 sistem.default(l)
-                window.onscroll = () =>{
-                    page = document.querySelector('nav')
-                    pages = page.getBoundingClientRect()
-                    document.querySelector('.up').style.display = (pages.top >= -50 )? 'none' : 'block'
-                }
-            },
-            up : () =>{
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.onresize = sistem.layout
             },
             default : a =>{
                 b = lokasi.find(element => element[1] == a)
@@ -562,7 +712,7 @@
                     document.querySelector('.tambah').disabled = true
                 }else{
                     c = lokasi.indexOf(b)
-                    document.querySelector('#wa_loc').value = b[1]
+                    wa_loc.value = b[1]
                     document.querySelector('select').selectedIndex  = c + 1   
                     document.querySelector('.tambah').disabled = false
                     localStorage.setItem('default',b[1])
@@ -570,28 +720,28 @@
             },
             times : a =>{
                 const b = new Date(parseFloat(a))
-                return b.getHours() + ':' + b.getMinutes() + ' ' + b.getDate() + '/' + b.getMonth() + '/' + b.getFullYear()
+                return b.toLocaleDateString('id-ID',
+                options = {
+                    hour:'numeric',
+                    minute:'numeric',
+                    day: 'numeric',
+                    month : 'long',
+                    year : 'numeric'
+                })
             },
             set : a =>{
-                document.querySelector('#wa_loc').value = a
+                wa_loc.value = a
                 localStorage.setItem('default',a)
             },
             submit : function(a) {
                 a.preventDefault()
-                b = new FormData(a.target)
-                c = {}
-                for (d of b.entries()) {
-                    c[d[0]] = d[1]
-                }
-                e = `https://wa.me/${c.local}${c.phone}`
-                f = {
-                    times : Date.now(),
-                    phone : `${c.local}${c.phone}`
-                }
                 g = !JSON.parse(localStorage.getItem('history'))? new Array() : JSON.parse(localStorage.getItem('history'))
-                g.push(f)
+                g.push({
+                    times : Date.now(),
+                    phone : `${a.target.local.value}${a.target.phone.value}`
+                })
                 localStorage.setItem('history',JSON.stringify(g))
-                sistem.chat(e)
+                sistem.chat(`https://wa.me/${a.target.local.value}${a.target.phone.value}`)
             },
             chat : a =>{
                 window.location.href = a
@@ -601,9 +751,9 @@
                 sistem.default(a.value)
             }
         }
-        //document.addEventListener('DOMContentLoaded',sistem.open, false);
         document.addEventListener('deviceready', sistem.open, false)
         document.addEventListener("resume", sistem.home, false)
+        document.addEventListener("backbutton", sistem.back, false)
     </script>
 </body>
 </html>
