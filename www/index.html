@@ -369,16 +369,16 @@
                     interstitial:'ca-app-pub-3940256099942544/1033173712'
                 }
                 admob.banner.config({
-                    id: admobid.banner,
-                    isTesting: false,
+                    id: admobis.banner,
+                    isTesting: true,
                     autoShow: true,
                     bannerAtTop:true,
                     overlap:true,
                 })
                 admob.banner.prepare()
                 admob.interstitial.config({
-                    id: admobid.interstitial,
-                    isTesting: false,
+                    id: admobis.interstitial,
+                    isTesting: true,
                     autoShow: false,
                 })
                 admob.interstitial.prepare()
@@ -390,13 +390,6 @@
                     admob.interstitial.prepare()
                 })
             },
-            closed(){
-                admob.interstitial.show()
-                document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
-                    navigator.app.exitApp()
-                    admob.interstitial.prepare()
-                })
-            }
         }
         lokasi = [
             ['AFGHANISTAN','93'],
@@ -638,7 +631,7 @@
             },
             back : () =>{
                 if(!home.getBoundingClientRect().top){
-                    oldAdmob.closed()
+                    navigator.app.exitApp()
                 }else{
                     window.scrollTo({top:0,behavior:'smooth'})
                 }
@@ -696,7 +689,7 @@
                 }else{
                     c = lokasi.indexOf(b)
                     wa_loc.value = b[1]
-                    document.querySelector('select').selectedIndex  = c + 1   
+                    document.querySelector('select').selectedIndex  = c + 1
                     document.querySelector('.tambah').disabled = false
                     localStorage.setItem('default',b[1])
                 }
@@ -752,6 +745,7 @@
                 window.location.href = 'https://buyungsp.github.io/what.smooth.asia/'
             }
         }
+        sistem.home()
         document.addEventListener('deviceready', sistem.open, false)
         document.addEventListener("resume", sistem.home, false)
         document.addEventListener("backbutton", sistem.back, false)
