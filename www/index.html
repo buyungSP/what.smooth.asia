@@ -6,7 +6,6 @@
     <meta name='format-detection' content='telephone=no'>
     <meta name='msapplication-tap-highlight' content='no'>
     <script type='text/javascript' src='cordova.js'></script>
-    <script src='js/index.js'></script>
     <style type="text/css">
         body,html,*{
             margin: 0;
@@ -44,7 +43,7 @@
         }
         nav{
             position: fixed;
-            top: 50px;
+            top: 0;
             left: 0;
             height: 50px;
             width: 100%;
@@ -296,9 +295,6 @@
             <form name="whatsapp" onsubmit="sistem.submit(event)">
                 <select id="wa-select" onchange="sistem.set(this)">
                     <option hidden>Select country</option>
-                    <option>as</option>
-                    <option>as</option>
-                    <option>as</option>
                 </select>
                 <div class="datainput">
                     <input class="validate" id="wa_loc" name="local" oninput="sistem.input(this)" required="" type="tel" value=''/>
@@ -321,7 +317,7 @@
             </div>
             <div class="info hide" id="trans">
                 <strong>
-                    Form link  direct whatsapp chat.   
+                    Form link  direct whatsapp chat.
                 </strong>
                 <ul>
                     <li>Press 'Lanjut' button to start.</li>
@@ -330,7 +326,7 @@
             </div>
             <div class="info" id="trans">
                 <strong>
-                    Formulir tautan obrolan whatsapp langsung.  
+                    Formulir tautan obrolan whatsapp langsung.
                 </strong>
                 <ul>
                     <li>tekan tombol 'Kirim' untuk memulai.</li>
@@ -369,16 +365,17 @@
                     interstitial:'ca-app-pub-3940256099942544/1033173712'
                 }
                 admob.banner.config({
-                    id: admobis.banner,
-                    isTesting: true,
+                    id: admobid.banner,
+                    isTesting: false,
                     autoShow: true,
                     bannerAtTop:true,
                     overlap:true,
+                    size:'BANNER'
                 })
                 admob.banner.prepare()
                 admob.interstitial.config({
-                    id: admobis.interstitial,
-                    isTesting: true,
+                    id: admobid.interstitial,
+                    isTesting: false,
                     autoShow: false,
                 })
                 admob.interstitial.prepare()
@@ -696,13 +693,9 @@
             },
             times : a =>{
                 const b = new Date(parseFloat(a))
-                return b.toLocaleDateString('id-ID',
-                options = {
-                    hour:'numeric',
-                    minute:'numeric',
-                    day: 'numeric',
-                    month : 'long',
-                    year : 'numeric'
+                return b.toLocaleString('id-ID',{
+                    dateStyle:"full",
+                    timeStyle:"full"
                 })
             },
             set : a =>{
@@ -742,10 +735,9 @@
                 }
             },
             about(){
-                window.location.href = 'https://buyungsp.github.io/what.smooth.asia/'
+                window.location.href = 'https://play.google.com/store/apps/dev?id=8080408610935462911'
             }
         }
-        sistem.home()
         document.addEventListener('deviceready', sistem.open, false)
         document.addEventListener("resume", sistem.home, false)
         document.addEventListener("backbutton", sistem.back, false)
