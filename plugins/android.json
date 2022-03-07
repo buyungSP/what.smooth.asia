@@ -1,0 +1,27 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-5890023057020023~2257127246",
+      "PACKAGE_NAME": "what.smooth.asia"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "what.smooth.asia"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-admob-sdk": {
+      "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "what.smooth.asia"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "what.smooth.asia"
+    }
+  }
+}

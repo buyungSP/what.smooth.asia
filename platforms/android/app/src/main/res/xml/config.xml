@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="what.smooth.asia" version="4.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="AdMob">
+        <param name="android-package" value="name.ratson.cordova.admob.AdMob" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>Chat wa langsung</name>
+    <description>Direct chat whatsapp
+    </description>
+    <author email="rascallino69@gmail.com" href="https://smooth.asia">
+        Smooth Home Production
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="market:*" />
+    <icon density="ldpi" src="resources/android/icon/36.png" />
+    <icon density="mdpi" src="resources/android/icon/48.png" />
+    <icon density="hdpi" src="resources/android/icon/72.png" />
+    <icon density="xhdpi" src="resources/android/icon/96.png" />
+    <icon density="xxhdpi" src="resources/android/icon/144.png" />
+    <icon density="xxxhdpi" src="resources/android/icon/192.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="KeepRunning" value="true" />
+    <preference name="LoadingDialog" value="Bismillah...!" />
+    <preference name="ErrorUrl" value="file:///android_asset/www/index.html" />
+    <preference name="AndroidLaunchMode" value="singleTop" />
+    <preference name="DefaultVolumeStream" value="call" />
+    <preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
+    <preference name="AppendUserAgent" value="My Browser" />
+    <preference name="android-targetSdkVersion" value="30" />
+    <preference name="AndroidXEnabled" value="true" />
+</widget>
