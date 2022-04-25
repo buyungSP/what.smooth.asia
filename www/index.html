@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -8,64 +9,35 @@
     <script type='text/javascript' src='cordova.js'></script>
     <link rel="stylesheet" href="index.css">
 </head>
-<body menu='branda'>
-    <nav>
-        <button class="title">
-            Chat langsung Whatsapp
-        </button>
-    </nav>
+
+<body data-before="Chat langsung Whatsapp">
     <div id="home" class="room">
         <section class="kolom">
-            <form name="whatsapp" onsubmit="sistem.submit(event)">
-                <select id="wa-select" onchange="sistem.set(this)">
-                    <option hidden>Select country</option>
+            <form name="whatsapp">
+                <select id="wa_select" onchange="sistem.set(this)" name="local">
+                    <option hidden value=0>Select country</option>
                 </select>
-                <div class="datainput">
-                    <input class="validate" id="wa_loc" name="local" oninput="sistem.input(this)" required="" type="tel" value=''/>
-                    <span id='wa-span' >+</span>
+                <div class="datainput" data-before="+">
+                    <input class="validate" id="wa_loc" oninput="sistem.input(this)" required="" type="tel" value='' />
                     <input class="validate" id="wa_phone" name="phone" required="" type="tel" value='' placeholder="phone number" />
                 </div>
-                <button class="wa-submit">
-                    Kirim
-                </button>
+                <button class="wa-submit">Kirim</button>
             </form>
         </section>
         <section class="detail">
             <div class="info">
-                <h3>Info</h3>
-                <button onclick="sistem.translate(this)" value="0">
-                    <span class="material-icons">radio_button_unchecked</span>
-                </button>
+                <button id="transe" onclick="sistem.translate(this)" value="0" data-before="Info" data-after="radio_button_unchecked"></button>
             </div>
-            <blockquote class="info hide" id="trans" data-before="Form link  direct whatsapp chat.">
-                <ul>
-                    <li>Press 'Lanjut' button to start.</li>
-                    <li>You have to install Whatsapp/Whatsapp business app and your mobile number registered on Whatsapp to proceed to Whatsapp chat page.</li>
-                </ul>
-            </blockquote>
-            <blockquote class="info" id="trans" data-before="Formulir tautan obrolan whatsapp langsung.">
-                <ul>
-                    <li>tekan tombol 'Kirim' untuk memulai.</li>
-                    <li>Anda harus menginstal aplikasi Whatsapp / Whatsapp bisnis dan nomor ponsel Anda terdaftar di Whatsapp untuk melanjutkan ke halaman obrolan Whatsapp.</li>
-                </ul>
-            </blockquote>
+            <blockquote class="info" id="trans" data-before=""></blockquote>
         </section>
     </div>
     <div id="histori" class="room" data-before="History Whatsapp number"></div>
     <footer>
-        <button onclick="sistem.button(0)">
-            <span class="material-icons">home</span>
-            <span>Home</span>
-        </button>
-        <button onclick="sistem.button(1)">
-            <span class="material-icons">list</span>
-            <span>History</span>
-        </button>
-        <button onclick="sistem.playStore()">
-            <span class="material-icons">shop</span>
-            <span>Update</span>
-        </button>
+        <button onclick="sistem.button(0)" data-after="Home" data-before="home"></button>
+        <button onclick="sistem.button(1)" data-after="History" data-before="list"></button>
+        <button onclick="sistem.playStore()" data-after="Update" data-before="shop"></button>
     </footer>
     <script type='text/javascript' src='index.js'></script>
 </body>
+
 </html>

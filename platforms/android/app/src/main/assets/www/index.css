@@ -38,48 +38,22 @@ body {
     background-color: #ddd
 }
 
-nav {
+body:before {
+    content: attr(data-before);
     position: fixed;
     top: 0;
     left: 0;
     height: 50px;
     width: 100%;
     z-index: 10;
-}
-
-.logo,
-.menu {
-    position: relative;
-    float: left;
-    height: 100%;
-    width: 50px;
-    border-radius: 0;
-    border: none;
-    padding: 10px;
     background-color: #1ebea5;
-    color: #fff;
-}
-
-.logo div,
-.menu div {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: #fff
-}
-
-.title {
-    position: relative;
-    float: left;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    background-color: #1ebea5;
-    border: none;
     font-weight: bold;
     font-size: large;
-    color: white
+    color: white;
+    text-align: center;
+    line-height: 50px
 }
+
 
 .kolom {
     position: relative;
@@ -113,19 +87,23 @@ form {
 .datainput {
     position: relative;
     float: left;
+    height: 50px;
+    margin-bottom: 5px
 }
 
-#wa-span {
-    position: absolute;
-    margin: 5px 0 20px;
-    left: 0;
-    padding: 12px 0;
-    color: #dfdfdf;
-    font-size: small;
+.datainput:before {
+    content: attr(data-before);
+    position: relative;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+    height: 100%;
+    width: 5%;
     background: #fff
 }
 
-#wa-select {
+
+#wa_select {
     position: relative;
     text-align: center;
     float: left;
@@ -139,14 +117,9 @@ form {
     background: #fff
 }
 
-#wa-select:focus {
-    border-bottom: 1px solid #21a51f;
-}
-
 input {
     position: relative;
-    margin: 5px 0;
-    padding: 12px 0;
+    height: 100%;
     color: #555;
     font-size: 14px;
     border: 0;
@@ -188,8 +161,7 @@ input:focus {
     background-color: #fff;
 }
 
-.info blockquote,
-.info ul {
+.info blockquote {
     position: relative;
     float: left;
     width: 100%;
@@ -211,22 +183,44 @@ blockquote:before {
     position: relative;
     float: right;
     border: none;
+    width: 100%;
     background-color: transparent;
     color: #21a51f;
     height: 30px
 }
 
-.info button span {}
-
-.info h3 {
+.info button:before {
+    content: attr(data-before);
     position: relative;
     float: left;
+    width: calc(100% - 30px);
+    height: 100%;
     line-height: 30px;
-    height: 30px
+    font-weight: bold;
+    color: #000;
+    font-size: large;
+    text-align: left;
 }
 
-li {
-    list-style-position: inside;
+.info button:after {
+    content: attr(data-after);
+    position: relative;
+    float: left;
+    width: 30px;
+    height: 100%;
+    line-height: 30px;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .list {
@@ -248,22 +242,32 @@ li {
     src: url(font.woff2) format('woff2');
 }
 
-.material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -moz-font-feature-settings: 'liga';
-    -moz-osx-font-smoothing: grayscale;
+
+#histori {
+    padding: 10px;
+    padding-bottom: 100px
 }
 
+#home,
+#histori {
+    padding-top: 100px;
+    width: 100%;
+    overflow: scroll;
+}
+
+#histori:before {
+    content: attr(data-before);
+    position: relative;
+    float: left;
+    width: 100%;
+    font-weight: bold;
+    height: auto;
+    padding: 10px 0;
+    color: #232323;
+    background-color: #ddd
+}
+
+/** footer **/
 footer {
     position: fixed;
     bottom: 0;
@@ -284,35 +288,29 @@ footer button {
     color: #fff
 }
 
-footer button span {
+footer button:after {
+    content: attr(data-after);
     position: relative;
     float: left;
     width: 100%;
 }
 
-.hide {
-    display: none;
-}
-
-#histori {
-    padding: 10px
-}
-
-#home,
-#histori {
-    padding-top: 100px;
-    width: 100%;
-    overflow: scroll;
-}
-
-#histori:before {
+footer button:before {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
     content: attr(data-before);
     position: relative;
     float: left;
     width: 100%;
-    font-weight: bold;
-    height: auto;
-    padding: 10px;
-    color: #232323;
-    background-color: #ddd
 }

@@ -1,21 +1,20 @@
-
 oldAdmob = {
-    banner(){
+    banner() {
         admobid = {
             banner: 'ca-app-pub-5890023057020023/9560902191',
             interstitial: 'ca-app-pub-5890023057020023/3413419879',
         }
         admobis = {
-            banner:'ca-app-pub-3940256099942544/6300978111',
-            interstitial:'ca-app-pub-3940256099942544/1033173712'
+            banner: 'ca-app-pub-3940256099942544/6300978111',
+            interstitial: 'ca-app-pub-3940256099942544/1033173712'
         }
         admob.banner.config({
             id: admobid.banner,
             isTesting: false,
             autoShow: true,
-            bannerAtTop:true,
-            overlap:true,
-            size:'BANNER'
+            bannerAtTop: true,
+            overlap: true,
+            size: 'BANNER'
         })
         admob.banner.prepare()
         admob.interstitial.config({
@@ -25,346 +24,816 @@ oldAdmob = {
         })
         admob.interstitial.prepare()
         document.addEventListener('admob.interstitial.events.LOAD_FAIL', function(event) {
-            sessionStorage.setItem('int',true)
+            sessionStorage.setItem('int', true)
         })
         document.addEventListener('admob.interstitial.events.LOAD', function(event) {
             sessionStorage.removeItem('int')
         })
     },
-    int(phone){
-        if(!sessionStorage.getItem('int')){
+    int(phone) {
+        if (!sessionStorage.getItem('int')) {
             admob.interstitial.show()
             document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
                 sistem.chat(`https://wa.me/${phone}`)
                 admob.interstitial.prepare()
             })
-        }else{
+        } else {
             sistem.chat(`https://wa.me/${phone}`)
         }
     },
 }
-lokasi = [
-    ['AFGHANISTAN','93'],
-    ['ALASKA (USA)','1-907'],
-    ['ALBANIA','355'],
-    ['ALGERIA','213'],
-    ['AMERICAN SAMOA','1-684'],
-    ['ANDORRA','376'],
-    ['ANGOLA','244'],
-    ['ANGUILLA','1-264'],
-    ['ANTIGUA & BARBUDA','1-268'],
-    ['ARGENTINA','54'],
-    ['ARMENIA','374'],
-    ['ARUBA','297'],
-    ['ASCENSION','247'],
-    ['AUSTRALIA','61'],
-    ['AUSTRIA','43'],
-    ['AZERBAIJAN','994'],
-    ['BAHAMAS','1-242'],
-    ['BAHRAIN','973'],
-    ['BANGLADESH','880'],
-    ['BARBADOS','1-246'],
-    ['BELARUS','375'],
-    ['BELGIUM','32'],
-    ['BELIZE','501'],
-    ['BENIN','229'],
-    ['BERMUDA','1-441'],
-    ['BHUTAN','975'],
-    ['BOLIVIA','591'],
-    ['BOSNIA / HERZEGOVINA','387'],
-    ['BOTSWANA','267'],
-    ['BRAZIL','55'],
-    ['BRITISH VIRGINISLANDS','1-284'],
-    ['BRUNEI','673'],
-    ['BULGARIA','359'],
-    ['BURKINA FASO','226'],
-    ['BURUNDI','257'],
-    ['CAMBODIA','855'],
-    ['CAMEROON','237'],
-    ['CANADA','1'],
-    ['CAPE VERDE','238'],
-    ['CAYMAN ISLANDS','1-345'],
-    ['CENTRAL AFRICANREPUBLIC','236'],
-    ['CHAD','235'],
-    ['CHILE','56'],
-    ['CHINA','86'],
-    ['COLOMBIA','57'],
-    ['COMOROS','269'],
-    ['CONGO','242'],
-    ['CONGO DEM. REP.(ZAIRE)','243'],
-    ['COOK ISLAND','682'],
-    ['COSTA RICA','506'],
-    ['CROATIA','385'],
-    ['CUBA','53'],
-    ['CYPRUS','357'],
-    ['CZECH REPUBLIC','420'],
-    ['DENMARK','45'],
-    ['DIEGO GARCIA','246'],
-    ['DJIBOUTI','253'],
-    ['DOMINICA','1-767'],
-    ['DOMINICAN REPUBLIC','1-809'],
-    ['EAST TIMOR','670'],
-    ['ECUADOR','593'],
-    ['EGYPT','20'],
-    ['EL SALVADOR','503'],
-    ['EQUATORIAL GUINEA','240'],
-    ['ERITREA','291'],
-    ['ESTONIA','372'],
-    ['ETHIOPIA','251'],
-    ['FALKLAND ISLANDS','500'],
-    ['FAROE ISLANDS','298'],
-    ['FIJI','679'],
-    ['FINLAND','358'],
-    ['FRANCE','33'],
-    ['FRENCH GUIANA','594'],
-    ['FRENCH POLYNESIA','689'],
-    ['GABON','241'],
-    ['GAMBIA','220'],
-    ['GEORGIA','995'],
-    ['GERMANY','49'],
-    ['GHANA','233'],
-    ['GIBRALTAR','350'],
-    ['GREECE','30'],
-    ['GREENLAND','299'],
-    ['GRENADA','1-473'],
-    ['GUADALOUPE','590'],
-    ['GUAM','1-671'],
-    ['GUATEMALA','502'],
-    ['GUINEA','224'],
-    ['GUINEA BISSAU','245'],
-    ['GUYANA','592'],
-    ['HAITI','509'],
-    ['HAWAII (USA)','1-808'],
-    ['HONDURAS','504'],
-    ['HONG KONG','852'],
-    ['HUNGARY','36'],
-    ['ICELAND','354'],
-    ['INDIA','91'],
-    ['INDONESIA','62'],
-    ['IRAN','98'],
-    ['IRAQ','964'],
-    ['IRELAND','353'],
-    ['ISRAEL','972'],
-    ['ITALY','39'],
-    ['IVORY COAST','225'],
-    ['JAMAICA','1-876'],
-    ['JAPAN','81'],
-    ['JORDAN','962'],
-    ['KAZAKHSTAN','7'],
-    ['KENYA','254'],
-    ['KIRIBATI','686'],
-    ['KOREA (NORTH)','850'],
-    ['KOREA SOUTH','82'],
-    ['KUWAIT','965'],
-    ['KYRGHYZSTAN','996'],
-    ['LAOS','856'],
-    ['LATVIA','371'],
-    ['LEBANON','961'],
-    ['LESOTHO','266'],
-    ['LIBERIA','231'],
-    ['LIBYA','218'],
-    ['LIECHTENSTEIN','423'],
-    ['LITHUANIA','370'],
-    ['LUXEMBOURG','352'],
-    ['MACAU','853'],
-    ['MACEDONIA','389'],
-    ['MADAGASCAR','261'],
-    ['MALAWI','265'],
-    ['MALAYSIA','60'],
-    ['MALDIVES','960'],
-    ['MALI','223'],
-    ['MALTA','356'],
-    ['MARIANA IS.(SAIPAN)','1-670'],
-    ['MARSHALL ISLANDS','692'],
-    ['MARTINIQUE(FRENCHANTILLES)','596'],
-    ['MAURITANIA','222'],
-    ['MAURITIUS','230'],
-    ['MAYOTTE','269'],
-    ['MEXICO','52'],
-    ['MICRONESIA','691'],
-    ['MOLDOVA','373'],
-    ['MONACO','377'],
-    ['MONGOLIA','976'],
-    ['MONTSERRAT','1-664 '],
-    ['MOROCCO','212'],
-    ['MOZAMBIQUE','258'],
-    ['MYANMAR','95'],
-    ['NAMIBIA','264'],
-    ['NAURU','674'],
-    ['NEPAL','977'],
-    ['NETHERLANDS','31'],
-    ['NETHERLANDS ANTILLES','599'],
-    ['NEW CALEDONIA','687'],
-    ['NEW ZEALAND','64'],
-    ['NICARAGUA','505'],
-    ['NIGER','227'],
-    ['NIGERIA','234'],
-    ['NIUE ISLAND','683'],
-    ['NORWAY','47'],
-    ['OMAN','968'],
-    ['PAKISTAN','92'],
-    ['PALAU','680'],
-    ['PALESTINE','970'],
-    ['PANAMA','507'],
-    ['PAPUA NEW GUINEA','675'],
-    ['PARAGUAY','595'],
-    ['PERU','51'],
-    ['PHILIPPINES','63'],
-    ['POLAND','48'],
-    ['PORTUGAL','351'],
-    ['PUERTO RICO (I) (USA)','1-787'],
-    ['PUERTO RICO (II)(USA)','1-939'],
-    ['QATAR','974'],
-    ['REUNION','262'],
-    ['ROMANIA','40'],
-    ['RUSSIA','7'],
-    ['RWANDA','250'],
-    ['SAMOA WESTERN','685'],
-    ['SAN MARINO','378'],
-    ['SAO TOME &PRINCIPE','239'],
-    ['SAUDI ARABIA','966'],
-    ['SENEGAL','221'],
-    ['SEYCHELLES','248'],
-    ['SIERRA LEONE','232'],
-    ['SINGAPORE','65'],
-    ['SLOVAKIA','421'],
-    ['SLOVENIA','386'],
-    ['SOLOMON ISLANDS','677'],
-    ['SOMALIA','252'],
-    ['SOUTH AFRICA','27'],
-    ['SPAIN','34'],
-    ['SRI LANKA','94'],
-    ['ST HELENA','290'],
-    ['ST KITTS & NEVIS','1-869 '],
-    ['ST LUCIA','1-758 '],
-    ['ST VINCENT &GRENADINES','1-784 '],
-    ['ST. PIERRE &MIQUELON','508'],
-    ['SUDAN','249'],
-    ['SURINAM','597'],
-    ['SWAZILAND','268'],
-    ['SWEDEN','46'],
-    ['SWITZERLAND','41'],
-    ['SYRIA','963'],
-    ['TAIWAN','886'],
-    ['TAJIKISTAN','992'],
-    ['TANZANIA','255'],
-    ['THAILAND','66'],
-    ['TOGO','228'],
-    ['TOKELAU','690'],
-    ['TONGA','676'],
-    ['TRINIDAD & TOBAGO','1-868'],
-    ['TUNISIA','216'],
-    ['TURKEY','90'],
-    ['TURKMENISTAN','993'],
-    ['TURKS & CAICOSISLANDS','1-649 '],
-    ['TUVALU','688'],
-    ['UGANDA','256'],
-    ['UKRAINE','380'],
-    ['UNITED ARAB EMIRATES','971'],
-    ['UNITED KINGDOM','44'],
-    ['URUGUAY','598'],
-    ['UZBEKISTAN','998'],
-    ['VANUATU','678'],
-    ['VATICAN CITY','39'],
-    ['VENEZUELA','58'],
-    ['VIETNAM','84'],
-    ['VIRGIN ISLAND (USA)','1-340'],
-    ['WALLIS & FUTUNA','681'],
-    ['YEMEN','967'],
-    ['YUGOSLAVIA (SERBIA)','381'],
-    ['ZAMBIA','260'],
-    ['ZANZIBAR','255'],
-    ['ZIMBABWE','263']
+translates = [
+    {"en-EN" : ["Form link  direct whatsapp chat." ,["Press 'Lanjut' button to start.<br>","You have to install Whatsapp/Whatsapp business app and your mobile number registered on Whatsapp to proceed to Whatsapp chat page."]]},
+    {"id-ID" : ["Formulir tautan obrolan whatsapp langsung." ,["tekan tombol 'Kirim' untuk memulai.<br>","Anda harus menginstal aplikasi Whatsapp / Whatsapp bisnis dan nomor ponsel Anda terdaftar di Whatsapp untuk melanjutkan ke halaman obrolan Whatsapp."]]}
 ]
+lokasi = [
+        {
+            "kode": "93",
+            "negara": "AFGHANISTAN"
+        },{
+            "kode": "1-907",
+            "negara": "ALASKA (USA)"
+        },{
+            "kode": "355",
+            "negara": "ALBANIA"
+        },{
+            "kode": "213",
+            "negara": "ALGERIA"
+        },{
+            "kode": "1-684",
+            "negara": "AMERICAN SAMOA"
+        },{
+            "kode": "376",
+            "negara": "ANDORRA"
+        },{
+            "kode": "244",
+            "negara": "ANGOLA"
+        },{
+            "kode": "1-264",
+            "negara": "ANGUILLA"
+        },{
+            "kode": "1-268",
+            "negara": "ANTIGUA & BARBUDA"
+        },{
+            "kode": "54",
+            "negara": "ARGENTINA"
+        },{
+            "kode": "374",
+            "negara": "ARMENIA"
+        },{
+            "kode": "297",
+            "negara": "ARUBA"
+        },{
+            "kode": "247",
+            "negara": "ASCENSION"
+        },{
+            "kode": "61",
+            "negara": "AUSTRALIA"
+        },{
+            "kode": "43",
+            "negara": "AUSTRIA"
+        },{
+            "kode": "994",
+            "negara": "AZERBAIJAN"
+        },{
+            "kode": "1-242",
+            "negara": "BAHAMAS"
+        },{
+            "kode": "973",
+            "negara": "BAHRAIN"
+        },{
+            "kode": "880",
+            "negara": "BANGLADESH"
+        },{
+            "kode": "1-246",
+            "negara": "BARBADOS"
+        },{
+            "kode": "375",
+            "negara": "BELARUS"
+        },{
+            "kode": "32",
+            "negara": "BELGIUM"
+        },{
+            "kode": "501",
+            "negara": "BELIZE"
+        },{
+            "kode": "229",
+            "negara": "BENIN"
+        },{
+            "kode": "1-441",
+            "negara": "BERMUDA"
+        },{
+            "kode": "975",
+            "negara": "BHUTAN"
+        },{
+            "kode": "591",
+            "negara": "BOLIVIA"
+        },{
+            "kode": "387",
+            "negara": "BOSNIA / HERZEGOVINA"
+        },{
+            "kode": "267",
+            "negara": "BOTSWANA"
+        },{
+            "kode": "55",
+            "negara": "BRAZIL"
+        },{
+            "kode": "1-284",
+            "negara": "BRITISH VIRGINISLANDS"
+        },{
+            "kode": "673",
+            "negara": "BRUNEI"
+        },{
+            "kode": "359",
+            "negara": "BULGARIA"
+        },{
+            "kode": "226",
+            "negara": "BURKINA FASO"
+        },{
+            "kode": "257",
+            "negara": "BURUNDI"
+        },{
+            "kode": "855",
+            "negara": "CAMBODIA"
+        },{
+            "kode": "237",
+            "negara": "CAMEROON"
+        },{
+            "kode": "1",
+            "negara": "CANADA"
+        },{
+            "kode": "238",
+            "negara": "CAPE VERDE"
+        },{
+            "kode": "1-345",
+            "negara": "CAYMAN ISLANDS"
+        },{
+            "kode": "236",
+            "negara": "CENTRAL AFRICANREPUBLIC"
+        },{
+            "kode": "235",
+            "negara": "CHAD"
+        },{
+            "kode": "56",
+            "negara": "CHILE"
+        },{
+            "kode": "86",
+            "negara": "CHINA"
+        },{
+            "kode": "57",
+            "negara": "COLOMBIA"
+        },{
+            "kode": "269",
+            "negara": "COMOROS"
+        },{
+            "kode": "242",
+            "negara": "CONGO"
+        },{
+            "kode": "243",
+            "negara": "CONGO DEM. REP.(ZAIRE)"
+        },{
+            "kode": "682",
+            "negara": "COOK ISLAND"
+        },{
+            "kode": "506",
+            "negara": "COSTA RICA"
+        },{
+            "kode": "385",
+            "negara": "CROATIA"
+        },{
+            "kode": "53",
+            "negara": "CUBA"
+        },{
+            "kode": "357",
+            "negara": "CYPRUS"
+        },{
+            "kode": "420",
+            "negara": "CZECH REPUBLIC"
+        },{
+            "kode": "45",
+            "negara": "DENMARK"
+        },{
+            "kode": "246",
+            "negara": "DIEGO GARCIA"
+        },{
+            "kode": "253",
+            "negara": "DJIBOUTI"
+        },{
+            "kode": "1-767",
+            "negara": "DOMINICA"
+        },{
+            "kode": "1-809",
+            "negara": "DOMINICAN REPUBLIC"
+        },{
+            "kode": "670",
+            "negara": "EAST TIMOR"
+        },{
+            "kode": "593",
+            "negara": "ECUADOR"
+        },{
+            "kode": "20",
+            "negara": "EGYPT"
+        },{
+            "kode": "503",
+            "negara": "EL SALVADOR"
+        },{
+            "kode": "240",
+            "negara": "EQUATORIAL GUINEA"
+        },{
+            "kode": "291",
+            "negara": "ERITREA"
+        },{
+            "kode": "372",
+            "negara": "ESTONIA"
+        },{
+            "kode": "251",
+            "negara": "ETHIOPIA"
+        },{
+            "kode": "500",
+            "negara": "FALKLAND ISLANDS"
+        },{
+            "kode": "298",
+            "negara": "FAROE ISLANDS"
+        },{
+            "kode": "679",
+            "negara": "FIJI"
+        },{
+            "kode": "358",
+            "negara": "FINLAND"
+        },{
+            "kode": "33",
+            "negara": "FRANCE"
+        },{
+            "kode": "594",
+            "negara": "FRENCH GUIANA"
+        },{
+            "kode": "689",
+            "negara": "FRENCH POLYNESIA"
+        },{
+            "kode": "241",
+            "negara": "GABON"
+        },{
+            "kode": "220",
+            "negara": "GAMBIA"
+        },{
+            "kode": "995",
+            "negara": "GEORGIA"
+        },{
+            "kode": "49",
+            "negara": "GERMANY"
+        },{
+            "kode": "233",
+            "negara": "GHANA"
+        },{
+            "kode": "350",
+            "negara": "GIBRALTAR"
+        },{
+            "kode": "30",
+            "negara": "GREECE"
+        },{
+            "kode": "299",
+            "negara": "GREENLAND"
+        },{
+            "kode": "1-473",
+            "negara": "GRENADA"
+        },{
+            "kode": "590",
+            "negara": "GUADALOUPE"
+        },{
+            "kode": "1-671",
+            "negara": "GUAM"
+        },{
+            "kode": "502",
+            "negara": "GUATEMALA"
+        },{
+            "kode": "224",
+            "negara": "GUINEA"
+        },{
+            "kode": "245",
+            "negara": "GUINEA BISSAU"
+        },{
+            "kode": "592",
+            "negara": "GUYANA"
+        },{
+            "kode": "509",
+            "negara": "HAITI"
+        },{
+            "kode": "1-808",
+            "negara": "HAWAII (USA)"
+        },{
+            "kode": "504",
+            "negara": "HONDURAS"
+        },{
+            "kode": "852",
+            "negara": "HONG KONG"
+        },{
+            "kode": "36",
+            "negara": "HUNGARY"
+        },{
+            "kode": "354",
+            "negara": "ICELAND"
+        },{
+            "kode": "91",
+            "negara": "INDIA"
+        },{
+            "kode": "62",
+            "negara": "INDONESIA"
+        },{
+            "kode": "98",
+            "negara": "IRAN"
+        },{
+            "kode": "964",
+            "negara": "IRAQ"
+        },{
+            "kode": "353",
+            "negara": "IRELAND"
+        },{
+            "kode": "972",
+            "negara": "ISRAEL"
+        },{
+            "kode": "39",
+            "negara": "ITALY"
+        },{
+            "kode": "225",
+            "negara": "IVORY COAST"
+        },{
+            "kode": "1-876",
+            "negara": "JAMAICA"
+        },{
+            "kode": "81",
+            "negara": "JAPAN"
+        },{
+            "kode": "962",
+            "negara": "JORDAN"
+        },{
+            "kode": "7",
+            "negara": "KAZAKHSTAN"
+        },{
+            "kode": "254",
+            "negara": "KENYA"
+        },{
+            "kode": "686",
+            "negara": "KIRIBATI"
+        },{
+            "kode": "850",
+            "negara": "KOREA (NORTH)"
+        },{
+            "kode": "82",
+            "negara": "KOREA SOUTH"
+        },{
+            "kode": "965",
+            "negara": "KUWAIT"
+        },{
+            "kode": "996",
+            "negara": "KYRGHYZSTAN"
+        },{
+            "kode": "856",
+            "negara": "LAOS"
+        },{
+            "kode": "371",
+            "negara": "LATVIA"
+        },{
+            "kode": "961",
+            "negara": "LEBANON"
+        },{
+            "kode": "266",
+            "negara": "LESOTHO"
+        },{
+            "kode": "231",
+            "negara": "LIBERIA"
+        },{
+            "kode": "218",
+            "negara": "LIBYA"
+        },{
+            "kode": "423",
+            "negara": "LIECHTENSTEIN"
+        },{
+            "kode": "370",
+            "negara": "LITHUANIA"
+        },{
+            "kode": "352",
+            "negara": "LUXEMBOURG"
+        },{
+            "kode": "853",
+            "negara": "MACAU"
+        },{
+            "kode": "389",
+            "negara": "MACEDONIA"
+        },{
+            "kode": "261",
+            "negara": "MADAGASCAR"
+        },{
+            "kode": "265",
+            "negara": "MALAWI"
+        },{
+            "kode": "60",
+            "negara": "MALAYSIA"
+        },{
+            "kode": "960",
+            "negara": "MALDIVES"
+        },{
+            "kode": "223",
+            "negara": "MALI"
+        },{
+            "kode": "356",
+            "negara": "MALTA"
+        },{
+            "kode": "1-670",
+            "negara": "MARIANA IS.(SAIPAN)"
+        },{
+            "kode": "692",
+            "negara": "MARSHALL ISLANDS"
+        },{
+            "kode": "596",
+            "negara": "MARTINIQUE(FRENCHANTILLES)"
+        },{
+            "kode": "222",
+            "negara": "MAURITANIA"
+        },{
+            "kode": "230",
+            "negara": "MAURITIUS"
+        },{
+            "kode": "269",
+            "negara": "MAYOTTE"
+        },{
+            "kode": "52",
+            "negara": "MEXICO"
+        },{
+            "kode": "691",
+            "negara": "MICRONESIA"
+        },{
+            "kode": "373",
+            "negara": "MOLDOVA"
+        },{
+            "kode": "377",
+            "negara": "MONACO"
+        },{
+            "kode": "976",
+            "negara": "MONGOLIA"
+        },{
+            "kode": "1-664 ",
+            "negara": "MONTSERRAT"
+        },{
+            "kode": "212",
+            "negara": "MOROCCO"
+        },{
+            "kode": "258",
+            "negara": "MOZAMBIQUE"
+        },{
+            "kode": "95",
+            "negara": "MYANMAR"
+        },{
+            "kode": "264",
+            "negara": "NAMIBIA"
+        },{
+            "kode": "674",
+            "negara": "NAURU"
+        },{
+            "kode": "977",
+            "negara": "NEPAL"
+        },{
+            "kode": "31",
+            "negara": "NETHERLANDS"
+        },{
+            "kode": "599",
+            "negara": "NETHERLANDS ANTILLES"
+        },{
+            "kode": "687",
+            "negara": "NEW CALEDONIA"
+        },{
+            "kode": "64",
+            "negara": "NEW ZEALAND"
+        },{
+            "kode": "505",
+            "negara": "NICARAGUA"
+        },{
+            "kode": "227",
+            "negara": "NIGER"
+        },{
+            "kode": "234",
+            "negara": "NIGERIA"
+        },{
+            "kode": "683",
+            "negara": "NIUE ISLAND"
+        },{
+            "kode": "47",
+            "negara": "NORWAY"
+        },{
+            "kode": "968",
+            "negara": "OMAN"
+        },{
+            "kode": "92",
+            "negara": "PAKISTAN"
+        },{
+            "kode": "680",
+            "negara": "PALAU"
+        },{
+            "kode": "970",
+            "negara": "PALESTINE"
+        },{
+            "kode": "507",
+            "negara": "PANAMA"
+        },{
+            "kode": "675",
+            "negara": "PAPUA NEW GUINEA"
+        },{
+            "kode": "595",
+            "negara": "PARAGUAY"
+        },{
+            "kode": "51",
+            "negara": "PERU"
+        },{
+            "kode": "63",
+            "negara": "PHILIPPINES"
+        },{
+            "kode": "48",
+            "negara": "POLAND"
+        },{
+            "kode": "351",
+            "negara": "PORTUGAL"
+        },{
+            "kode": "1-787",
+            "negara": "PUERTO RICO (I) (USA)"
+        },{
+            "kode": "1-939",
+            "negara": "PUERTO RICO (II)(USA)"
+        },{
+            "kode": "974",
+            "negara": "QATAR"
+        },{
+            "kode": "262",
+            "negara": "REUNION"
+        },{
+            "kode": "40",
+            "negara": "ROMANIA"
+        },{
+            "kode": "7",
+            "negara": "RUSSIA"
+        },{
+            "kode": "250",
+            "negara": "RWANDA"
+        },{
+            "kode": "685",
+            "negara": "SAMOA WESTERN"
+        },{
+            "kode": "378",
+            "negara": "SAN MARINO"
+        },{
+            "kode": "239",
+            "negara": "SAO TOME &PRINCIPE"
+        },{
+            "kode": "966",
+            "negara": "SAUDI ARABIA"
+        },{
+            "kode": "221",
+            "negara": "SENEGAL"
+        },{
+            "kode": "248",
+            "negara": "SEYCHELLES"
+        },{
+            "kode": "232",
+            "negara": "SIERRA LEONE"
+        },{
+            "kode": "65",
+            "negara": "SINGAPORE"
+        },{
+            "kode": "421",
+            "negara": "SLOVAKIA"
+        },{
+            "kode": "386",
+            "negara": "SLOVENIA"
+        },{
+            "kode": "677",
+            "negara": "SOLOMON ISLANDS"
+        },{
+            "kode": "252",
+            "negara": "SOMALIA"
+        },{
+            "kode": "27",
+            "negara": "SOUTH AFRICA"
+        },{
+            "kode": "34",
+            "negara": "SPAIN"
+        },{
+            "kode": "94",
+            "negara": "SRI LANKA"
+        },{
+            "kode": "290",
+            "negara": "ST HELENA"
+        },{
+            "kode": "1-869 ",
+            "negara": "ST KITTS & NEVIS"
+        },{
+            "kode": "1-758 ",
+            "negara": "ST LUCIA"
+        },{
+            "kode": "1-784 ",
+            "negara": "ST VINCENT &GRENADINES"
+        },{
+            "kode": "508",
+            "negara": "ST. PIERRE &MIQUELON"
+        },{
+            "kode": "249",
+            "negara": "SUDAN"
+        },{
+            "kode": "597",
+            "negara": "SURINAM"
+        },{
+            "kode": "268",
+            "negara": "SWAZILAND"
+        },{
+            "kode": "46",
+            "negara": "SWEDEN"
+        },{
+            "kode": "41",
+            "negara": "SWITZERLAND"
+        },{
+            "kode": "963",
+            "negara": "SYRIA"
+        },{
+            "kode": "886",
+            "negara": "TAIWAN"
+        },{
+            "kode": "992",
+            "negara": "TAJIKISTAN"
+        },{
+            "kode": "255",
+            "negara": "TANZANIA"
+        },{
+            "kode": "66",
+            "negara": "THAILAND"
+        },{
+            "kode": "228",
+            "negara": "TOGO"
+        },{
+            "kode": "690",
+            "negara": "TOKELAU"
+        },{
+            "kode": "676",
+            "negara": "TONGA"
+        },{
+            "kode": "1-868",
+            "negara": "TRINIDAD & TOBAGO"
+        },{
+            "kode": "216",
+            "negara": "TUNISIA"
+        },{
+            "kode": "90",
+            "negara": "TURKEY"
+        },{
+            "kode": "993",
+            "negara": "TURKMENISTAN"
+        },{
+            "kode": "1-649 ",
+            "negara": "TURKS & CAICOSISLANDS"
+        },{
+            "kode": "688",
+            "negara": "TUVALU"
+        },{
+            "kode": "256",
+            "negara": "UGANDA"
+        },{
+            "kode": "380",
+            "negara": "UKRAINE"
+        },{
+            "kode": "971",
+            "negara": "UNITED ARAB EMIRATES"
+        },{
+            "kode": "44",
+            "negara": "UNITED KINGDOM"
+        },{
+            "kode": "598",
+            "negara": "URUGUAY"
+        },{
+            "kode": "998",
+            "negara": "UZBEKISTAN"
+        },{
+            "kode": "678",
+            "negara": "VANUATU"
+        },{
+            "kode": "39",
+            "negara": "VATICAN CITY"
+        },{
+            "kode": "58",
+            "negara": "VENEZUELA"
+        },{
+            "kode": "84",
+            "negara": "VIETNAM"
+        },{
+            "kode": "1-340",
+            "negara": "VIRGIN ISLAND (USA)"
+        },{
+            "kode": "681",
+            "negara": "WALLIS & FUTUNA"
+        },{
+            "kode": "967",
+            "negara": "YEMEN"
+        },{
+            "kode": "381",
+            "negara": "YUGOSLAVIA (SERBIA)"
+        },{
+            "kode": "260",
+            "negara": "ZAMBIA"
+        },{
+            "kode": "255",
+            "negara": "ZANZIBAR"
+        },{
+            "kode": "263",
+            "negara": "ZIMBABWE"
+        }]
 sistem = {
-    open(){
-        oldAdmob.banner()
+    open() {
         sistem.home()
-    },
-    back(){
-        !document.querySelector('#home').getBoundingClientRect().top? navigator.app.exitApp() : window.scrollTo({top:0,behavior:'smooth'})
-    },
-    translate(a){
-        a.value = !parseInt(a.value)? 1 : 0
-        a.children[0].innerHTML = !parseInt(a.value)? 'radio_button_unchecked' : 'radio_button_checked'
-        document.querySelectorAll('#trans').forEach(b => b.classList.toggle('hide'))
-    },
-    layout(){
-        document.querySelectorAll('.room').forEach( a => a.style.height = `${window.innerHeight}px`)
-    },
-    home : () =>{
-        sistem.layout()
-        a = document
-        b = a.querySelector('select')
-        b.innerHTML = ''
-        c = a.createElement('option')
-        c.setAttribute('hidden',true)
-        c.innerHTML = 'Select country'
-        b.appendChild(c)
-        for(d of lokasi){
-            e = a.createElement('option')
-            e.setAttribute('value',d[1])
-            e.innerHTML = d[0]
-            b.appendChild(e)
-        }
-        f = !JSON.parse(localStorage.getItem('history'))? new Array() : JSON.parse(localStorage.getItem('history'))
-        g = a.querySelector('#histori')
-        g.innerHTML = ''
-        for(h of f){
-            i = a.createElement('blockquote')
-            i.className = 'list'
-            i.setAttribute('onclick',`oldAdmob.int('${h.phone}')`)
-            i.setAttribute('data-before',h.phone)
-            i.innerHTML = sistem.times(h.times)
-            g.appendChild(i)
-        }
-        l = !localStorage.getItem('default')? 62 : localStorage.getItem('default')
-        sistem.default(l)
-        window.onresize = sistem.layout
-    },
-    default : a =>{
-        b = lokasi.find(element => element[1] == a)
-        if(!b){
-            document.querySelector('select').selectedIndex  = 0
+        if(!admob){
+            return false
         }else{
-            document.querySelector('#wa_loc').value = b[1]
-            document.querySelector('select').selectedIndex  = lokasi.indexOf(b) + 1
-            localStorage.setItem('default',b[1])
+            oldAdmob.banner()
         }
     },
-    times : a =>{
-        return new Intl.DateTimeFormat('id-ID',{ dateStyle: 'full', timeStyle: 'short' }).format(new Date(parseFloat(a)))
+    back: () => !document.querySelector('#home').getBoundingClientRect().top ? navigator.app.exitApp() : window.scrollTo({ top: 0, behavior: 'smooth' }),
+    translate(a) {
+        a.value = !parseInt(a.value) ? 1 : 0
+        a.setAttribute('data-after',!parseInt(a.value) ? 'radio_button_unchecked' : 'radio_button_checked')
+        this.translates(a.value)
     },
-    set : a =>{
-        document.querySelector('#wa_loc').value = a.value
-        localStorage.setItem('default',a.value)
+    translates(a = 0) {
+        for(b in translates[a]){
+            trans.setAttribute('data-before',translates[a][b][0])
+            trans.innerHTML = new Intl.ListFormat(b, { style: 'long', type: 'disjunction' }).format(translates[a][b][1])
+        }
     },
-    submit : function(a) {
-        a.preventDefault()
-        g = !JSON.parse(localStorage.getItem('history'))? new Array() : JSON.parse(localStorage.getItem('history'))
-        g.push({
-            times : Date.now(),
-            phone : `${a.target.local.value}${a.target.phone.value}`
+    layout: () => document.querySelectorAll('.room').forEach(a => a.style.height = `${window.innerHeight}px`),
+    home() {
+        sistem.layout()
+        if (wa_select.childElementCount === 1) {
+            this.listLokasi()
+        }
+        this.listHistory()
+        this.default()
+        this.translates()
+        window.onresize = sistem.layout
+        whatsapp.onsubmit = function(a) {
+            a.preventDefault()
+            b = Object.fromEntries(new FormData(this).entries())
+            c = {
+                times: Date.now(),
+                phone: `${b.local}${b.phone}`
+            }
+            d = !JSON.parse(localStorage.getItem('history')) ? [] : JSON.parse(localStorage.getItem('history'))
+            d.push(c)
+            localStorage.setItem('history', JSON.stringify(d))
+            sistem.chat(`https://wa.me/${c.phone}`)
+        }
+    },
+    listLokasi() {
+        lokasi.forEach(({ kode, negara }) => {
+            a = document.createElement('option')
+            a.value = kode
+            a.innerHTML = negara
+            wa_select.appendChild(a)
         })
-        localStorage.setItem('history',JSON.stringify(g))
-        sistem.chat(`https://wa.me/${a.target.local.value}${a.target.phone.value}`)
     },
-    chat : a =>{
+    listHistory() {
+        histori.innerHTML = ''
+        if (!JSON.parse(localStorage.getItem('history'))) {
+            this.listViewHistory({})
+        } else {
+            a = JSON.parse(localStorage.getItem('history'))
+            a.sort((b,c) => b.times > c.times? b.times - c.times : c.times - b.times)
+            a.forEach(this.listViewHistory)
+        }
+    },
+    listViewHistory({ times = 'data kosong', phone = 'error' }) {
+        a = document.createElement('blockquote')
+        a.className = 'list'
+        a.setAttribute('onclick', !parseInt(times) ? 'sistem.back()' : `oldAdmob.int('${phone}')`)
+        a.setAttribute('data-before', phone)
+        a.innerHTML = !parseInt(times) ? times : sistem.times(times)
+        histori.appendChild(a)
+    },
+    default () {
+        a = !localStorage.getItem('default') ? 62 : localStorage.getItem('default')
+        b = lokasi.find(element => element.kode === a)
+        if (!b) {
+            document.querySelector('select').value = 62
+        } else {
+            wa_loc.value = b.kode
+            document.querySelector('select').value = b.kode
+            localStorage.setItem('default', b.kode)
+        }
+    },
+    set: a => {
+        wa_loc.value = a.value
+        localStorage.setItem('default', a.value)
+    },
+    chat: a => {
         window.location.href = a
         sistem.home()
     },
-    input : a =>{
-        sistem.default(a.value)
-    },
-    playStore(){
-        window.location.href = 'https://play.google.com/store/apps/details?id=what.smooth.asia'
-    },
-    button(a){
-        document.querySelector(!a?'#home':'#histori').scrollIntoView({behavior:'smooth'})
-    },
-    about(){
-        window.location.href = 'https://play.google.com/store/apps/dev?id=8080408610935462911'
-    }
+    times: a => new Intl.DateTimeFormat('id-ID', { dateStyle: 'full', timeStyle: 'short' }).format(new Date(parseFloat(a))),
+    input: a => sistem.default(a.value),
+    playStore: () => location.href = 'https://play.google.com/store/apps/details?id=what.smooth.asia',
+    button: a => document.querySelector(!a ? '#home' : '#histori').scrollIntoView({ behavior: 'smooth' })
 }
 document.addEventListener('deviceready', sistem.open, false)
 document.addEventListener("resume", sistem.home, false)
